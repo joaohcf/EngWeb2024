@@ -8,13 +8,12 @@ data = json.load(json_file)
 new_data = {"compositores":[]}
 periodos = []
 for compositor in data["compositores"]:
-    
     # Add compositor to new_data
     new_data["compositores"].append(compositor)
 
     # Add 'periodo' to periodos list
     if compositor["periodo"] not in periodos:
-        periodos.append(compositor["periodo"])
+        periodos.append(compositor["periodo"])    
 
 # Periodos dict
 periodos_counter = 1
@@ -28,6 +27,12 @@ for item in periodos:
 
 # Add new_periodos to new_data
 new_data["periodos"] = new_periodos
+
+# Add periodo id to compositores data
+for compositor in new_data["compositores"]:
+    for periodo in new_periodos:
+        if periodo["periodo"] == compositor["periodo"]:
+            compositor["id_periodo"] = periodo["id"]
 
 # Write json file
 new_json_file = open("new_compositores.json", "w", encoding="utf-8")
