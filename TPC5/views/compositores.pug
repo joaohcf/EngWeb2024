@@ -1,0 +1,14 @@
+extends layout
+
+block title
+    | Lista de compositores
+
+block content
+    h2 
+        | Lista de compositores
+    a(href="/compositores/create")
+        | Adicionar novo compositor 
+    ul
+        each compositor in compositores
+            li
+                a(href=`/compositores/${compositor.id}`) #{compositor.nome}

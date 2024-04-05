@@ -1,0 +1,22 @@
+extends layout
+
+block title
+    | #{periodo.periodo}
+
+block content
+    h1 #{periodo.periodo}
+
+    p
+        a(href="/periodos/" + periodo.id + "/edit")
+            | editar
+        |  ou 
+        a(href="/periodos/" + periodo.id + "/delete")
+            | eliminar
+
+    h2
+        | Lista de compositores
+
+    ul 
+        each compositor in compositores 
+            li 
+                a(href=`/compositores/${compositor.id}`) #{compositor.nome}

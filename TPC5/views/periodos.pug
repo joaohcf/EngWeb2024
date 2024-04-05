@@ -1,0 +1,14 @@
+extends layout
+
+block title
+    | Lista de períodos
+
+block content
+    h2 
+        | Lista de períodos
+    a(href="/periodos/create")
+        | Adicionar novo período
+    ul
+        each periodo in periodos
+            li
+                a(href=`/periodos/${periodo.id}`) #{periodo.periodo}

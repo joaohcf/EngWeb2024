@@ -1,0 +1,14 @@
+extends layout
+
+block title
+    | Criar novo período
+
+block content
+    form(action="/periodos/", method="post")
+        label(for="id") ID
+        input(type="text", name="id", placeholder="ID") 
+
+        label(for="periodo") Período
+        input(type="text", name="periodo", placeholder="Período") 
+
+        input(type="submit")

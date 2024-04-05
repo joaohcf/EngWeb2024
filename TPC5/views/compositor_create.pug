@@ -1,0 +1,28 @@
+extends layout
+
+block title
+    | Criar novo compositor
+
+block content
+    form(action="/compositores/",method="post")
+        label(for="id") ID
+        input(type="text", name="id", placeholder="ID") 
+        
+        label(for="nome") Nome
+        input(type="text", name="nome", placeholder="Nome") 
+        
+        label(for="dataNasc") Data de nascimento
+        input(type="date", name="dataNasc", placeholder="Data de nascimento")
+
+        label(for="dataObito") Data de óbito
+        input(type="date", name="dataObito", placeholder="Data de óbito") 
+
+        label(for="id_período") Período
+        select(name="id_periodo", placeholder="Período")         
+            each periodo in periodos
+                option(value=periodo.id) #{periodo.periodo} 
+
+        label(for="bio") Bio
+        input(type="text", name="bio", placeholder="Bio")
+
+        input(type="submit")
