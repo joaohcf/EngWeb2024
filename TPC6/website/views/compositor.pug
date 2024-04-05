@@ -1,0 +1,25 @@
+extends layout
+
+block title
+    | #{compositor.nome}
+
+block content
+    h1 #{compositor.nome}
+    p
+        b Data de nascimento: 
+        | #{compositor.dataNasc}
+    p 
+        b Data de óbito: 
+        | #{compositor.dataObito}
+    p
+        b Período: 
+        a(href="/periodos/" + compositor.id_periodo) #{periodo.periodo}
+    p
+        b Biografia: 
+        | #{compositor.bio}
+    p
+        a(href="/compositores/" + compositor.id + "/edit")
+            | editar
+        |  ou 
+        a(href="/compositores/" + compositor.id + "/delete")
+            | eliminar

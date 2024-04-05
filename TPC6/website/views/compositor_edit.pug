@@ -1,0 +1,31 @@
+extends layout
+
+block title
+    | Editar compositor
+
+block content
+    form(action="/compositores/" + compositor.id, method="post")
+        label(for="id") ID
+        input(type="text", id="id", name="id", placeholder="ID", value=compositor.id) 
+        
+        label(for="nome") Nome
+        input(type="text", id="nome", name="nome", placeholder="Nome", value=compositor.nome) 
+        
+        label(for="dataNasc") Data de nascimento
+        input(type="date", id="dataNasc", name="dataNasc", placeholder="Data de nascimento", value=compositor.dataNasc)
+
+        label(for="dataObito") Data de óbito
+        input(type="date", id="dataObito", name="dataObito", placeholder="Data de óbito", value=compositor.dataObito) 
+
+        label(for="id_periodo") Período
+        select(id="id_periodo", name="id_periodo", placeholder="Período", value=compositor.id_periodo)         
+            each periodo in periodos
+                if periodo.id == compositor.id_periodo
+                    option(value=periodo.id, selected) #{periodo.periodo}
+                else 
+                    option(value=periodo.id) #{periodo.periodo}
+
+        label(for="bio") Bio
+        input(type="text", id="bio", name="bio", placeholder="Bio", value=compositor.bio)
+
+        input(type="submit")
