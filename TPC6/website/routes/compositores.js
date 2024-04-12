@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const compositores = await axios('http://localhost:8000/compositores?_sort=nome');
+        const compositores = await axios('http://localhost:8000/compositores');
 
         if (compositores.status === 404) return res.status(404).end();
 
@@ -47,12 +47,8 @@ router.get('/:id', async (req, res) => {
         const compositor = await axios('http://localhost:8000/compositores/' + req.params.id);
         if (compositor.status === 404) return res.status(404).end();
 
-        const periodo = await axios('http://localhost:8000/periodos/' + compositor.data.id_periodo);
-        if (periodo.status === 404) return res.status(404).end();
-
         res.render('compositor.pug', {
             compositor: compositor.data,
-            periodo: periodo.data
         });
     } catch (e) {
         res.status(500).end();

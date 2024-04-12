@@ -106,9 +106,18 @@ http.createServer((req, res) => {
                 var id = req.url.split('/')[2];
                 axios.get("http://localhost:8000/compositores/" + id)
                 .then(resp =>{
-                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-                    res.write(pages.compositor(resp.data));
-                    res.end();
+                    axios.get("http://localhost:8000/periodos/" + resp.data.id_periodo)
+                    .then(periodos =>{
+                        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                        res.write(pages.compositor(resp.data, periodos.data));
+                        res.end();
+                    })
+                    .catch(erro =>{
+                        res.writeHead(501, {'Content-Type': 'text/html; charset=utf-8'});
+                        res.write("<p>Não foi possível obter os dados do compositor</p>");
+                        console.log(erro);
+                        res.end();
+                    })
                 })
                 .catch(erro =>{
                     res.writeHead(501, {'Content-Type': 'text/html; charset=utf-8'});

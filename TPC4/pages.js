@@ -49,7 +49,7 @@ exports.compositores = function(list){
     return page;
 }
 
-exports.compositor = function(data){
+exports.compositor = function(data, periodo){
     var page = `
     <html>
         <head>
@@ -63,7 +63,7 @@ exports.compositor = function(data){
                 <h1>${data.nome}</h1>
                 <p><b>Data de nascimento:</b> ${data.dataNasc}</p>
                 <p><b>Data de óbvio:</b> ${data.dataObito}</p>
-                <p><b>Período:</b> ${data.periodo}</p>
+                <p><b>Período:</b> ${periodo.periodo}</p>
                 <p><b>Biografia:</b></p>
     `
 

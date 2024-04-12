@@ -33,6 +33,8 @@ for compositor in new_data["compositores"]:
     for periodo in new_periodos:
         if periodo["periodo"] == compositor["periodo"]:
             compositor["id_periodo"] = periodo["id"]
+            del compositor["periodo"]
+            break
 
 # Write json file
 new_json_file = open("new_compositores.json", "w", encoding="utf-8")
