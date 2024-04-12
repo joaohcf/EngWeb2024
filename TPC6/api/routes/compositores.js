@@ -4,7 +4,6 @@ import compositor from "../controllers/compositor.js";
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    console.log(req.query)
     compositor.read_all(req.query)
         .then(data => res.jsonp(data))
         .catch(error => res.jsonp(error));
