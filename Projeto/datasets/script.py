@@ -10,5 +10,8 @@ for row in csv_reader:
     row['_id'] = row.pop('\ufeffID')
     rows.append(row)
 
+database_json = {}
+database_json['inqueritos'] = rows
+
 json_file = open('database.json', 'w', encoding='utf-8')
-json.dump(rows, json_file, indent=4)
+json.dump(database_json, json_file, indent=4)
