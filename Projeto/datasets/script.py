@@ -5,13 +5,17 @@ csv_file = open('PT-UM-ADB-DIO-MAB-006.csv', mode='r', encoding='utf-8')
 
 csv_reader = csv.DictReader(csv_file, delimiter=';')
 
-rows = []
+inqueritos = []
 for row in csv_reader:
-    row['_id'] = row.pop('\ufeffID')
-    rows.append(row)
+    inquerito = {}
+    inquerito['_id'] = row.pop('\ufeffID')
+    for key in row:
+        if row[key] != '':
+            inquerito[key] = row[key]
+    inqueritos.append(inquerito)
 
 database_json = {}
-database_json['inqueritos'] = rows
+database_json['inqueritos'] = inqueritos
 
 json_file = open('database.json', 'w', encoding='utf-8')
 json.dump(database_json, json_file, indent=4)
